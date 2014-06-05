@@ -17,21 +17,12 @@ Isomorphic Smart Client AngularJS adapter
 
 ## Development
 
-### Requirements
-
-Git, NodeJS, Grunt, Gulp
-
-    > npm install -g grunt
-    > npm install -g grunt-cli
-    > npm install -g gulp
-
 ### Initialization
 To initialize project run the following command in the terminal window:
 
     > npm install
 
 ### Development tasks
-
 
 #### Clean project
 
