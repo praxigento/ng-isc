@@ -1,0 +1,6 @@
+.idea/
+.grunt/
+app/docs/
+build/
+node_modules/
+atlassian-ide-plugin.xml
