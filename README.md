@@ -1,6 +1,6 @@
 # ng-isc [![Build Status](https://travis-ci.org/praxigento/ng-isc.svg?branch=master)](https://travis-ci.org/praxigento/ng-isc)
 
-Isomorphic Smart Client AngularJS adapter
+Isomorphic SmartClient AngularJS adapter
 
 ## Requirements
 
