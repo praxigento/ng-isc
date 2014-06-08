@@ -38,7 +38,8 @@
     "grunt-cli": "^0.1.12",
     "grunt-karma": "^0.8.2",
     "coveralls": "^2.10.0",
-    "grunt-karma-coveralls": "^2.5.1"
+    "grunt-karma-coveralls": "^2.5.1",
+    "grunt-conventional-changelog": "^1.1.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/grunt karma"

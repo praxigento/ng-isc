@@ -7,10 +7,6 @@ module.exports = function (grunt) {
             unit: {
                 configFile: 'test/karma/reports.conf.js',
                 singleRun: true
-            },
-            coverage: {
-                configFile: 'test/karma/reports.conf.js',
-                singleRun: true
             }
         },
 
@@ -22,12 +18,18 @@ module.exports = function (grunt) {
                 force: true,
                 recursive: true
             }
+        },
+
+        changelog: {
+            options: {
+            }
         }
     });
 
     /** load plugins */
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-karma-coveralls');
+    grunt.loadNpmTasks('grunt-conventional-changelog');
 
     /** default tasks */
     grunt.registerTask('default', [
@@ -35,7 +37,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('coverage', [
-        'karma:coverage',
+//        'karma:coverage',
         'coveralls'
     ]);
 };
