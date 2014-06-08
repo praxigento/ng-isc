@@ -39,7 +39,8 @@
     "grunt-karma": "^0.8.2",
     "coveralls": "^2.10.0",
     "grunt-karma-coveralls": "^2.5.1",
-    "grunt-conventional-changelog": "^1.1.0"
+    "grunt-conventional-changelog": "^1.1.0",
+    "codeclimate-test-reporter": "0.0.3"
   },
   "scripts": {
     "test": "./node_modules/.bin/grunt karma"

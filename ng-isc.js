@@ -95,7 +95,10 @@
  *
  * @author alex-smirnov <0lex0.smirnov@gmail.com>
  */
+/*global define, angular, window, document */
 (function (factory) {
+    'use strict';
+
     if (typeof define === 'function' && define.amd) {
         /* List of AMD modules to be loaded with RequireJS. */
         var amdDepends = ['angular', 'isomorphic'];
@@ -553,7 +556,7 @@
                 return {
                     restrict: 'EA',
                     require: [dirName, "?ngModel"],
-                    transclude: (dirName == 'iscHTMLFlow'),
+                    transclude: (dirName === 'iscHTMLFlow'),
                     controller: function ($scope) {
                         var ctrl = this;
                         ctrl.members = [];
@@ -564,11 +567,12 @@
                             // search parent ng-isc library directive
 
                             var getCtrl = function (el, ctrlName) {
-                                var ctrl = el.controller(ctrlName);
-                                if (ctrl) {
+                                var c = el.controller(ctrlName);
+                                if (c) {
                                     var parentCtrl = el.parent().controller(ctrlName);
-                                    if (ctrl !== parentCtrl)
-                                        return ctrl;
+                                    if (c !== parentCtrl) {
+                                        return c;
+                                    }
                                 }
                                 return null;
                             };
@@ -576,8 +580,9 @@
                                 for (var i = 0; i < ngMod.Types.length; i++) {
                                     var ctrlName = prefix + ngMod.Types[i];
                                     var ctrl = getCtrl(el, ctrlName);
-                                    if (ctrl)
+                                    if (ctrl) {
                                         return ctrl;
+                                    }
                                 }
                                 return null;
                             };
@@ -587,8 +592,9 @@
                                 while (getCtrl(parent, 'ngInclude')) {
                                     parent = parent.parent();
                                     parentCtrl = searchIscCtrl(parent);
-                                    if (parentCtrl)
+                                    if (parentCtrl) {
                                         break;
+                                    }
                                 }
                             }
 
@@ -598,12 +604,12 @@
                             var handlers = {};
 
                             function processAttr(key, value, ev) {
-                                if (ignoredAttributes.indexOf(key) == -1) {
+                                if (ignoredAttributes.indexOf(key) === -1) {
                                     var match = key.match(/^sc(On)?([A-Z].*)/);
                                     if (match) {
                                         var name = match[2].charAt(0).toLowerCase() + match[2].slice(1);
                                         if (match[1]) { // if event handler
-                                            if (name == 'dataFetch') { // if data handler
+                                            if (name === 'dataFetch') { // if data handler
                                                 handlers[name] = function () {
                                                     var handler = ev && $scope.$eval(value) || value;
                                                     return handler.apply($scope, arguments);
@@ -633,7 +639,7 @@
                                 processAttr(key, attrs[key], true);
                             });
 
-                            if (parentCtrl == null) {
+                            if (parentCtrl === null) {
                                 //props.position = isc.Canvas.RELATIVE;
                                 // define fake object for computing percent dimensions
                                 props.percentSource = {
@@ -668,7 +674,7 @@
                                 var defaultHandler = ctrl.control[key];
                                 ctrl.control[key] = function () {
                                     var res = value.apply(this, arguments);
-                                    if (res != false && angular.isFunction(defaultHandler)) {
+                                    if (res !== false && angular.isFunction(defaultHandler)) {
                                         // exec default handler
                                         defaultHandler.apply(this, arguments);
                                     }
@@ -789,9 +795,11 @@
                                 };
                                 var res = null;
                                 eventCounter++;
-                                if (eventCounter == 1)
-                                    res = scope.$apply(h); else
+                                if (eventCounter == 1) {
+                                    res = scope.$apply(h);
+                                } else {
                                     res = h();
+                                }
                                 eventCounter--;
                                 return res;
                             };

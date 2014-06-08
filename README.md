@@ -1,4 +1,4 @@
-# ng-isc [![Build Status](https://travis-ci.org/praxigento/ng-isc.svg?branch=master)](https://travis-ci.org/praxigento/ng-isc) [![Coverage Status](https://coveralls.io/repos/praxigento/ng-isc/badge.png)](https://coveralls.io/r/praxigento/ng-isc)
+# ng-isc [![Build Status](https://travis-ci.org/praxigento/ng-isc.svg?branch=master)](https://travis-ci.org/praxigento/ng-isc) [![Coverage Status](https://coveralls.io/repos/praxigento/ng-isc/badge.png)](https://coveralls.io/r/praxigento/ng-isc) [![Code Climate](https://codeclimate.com/github/praxigento/ng-isc.png)](https://codeclimate.com/github/praxigento/ng-isc)
 
 Isomorphic SmartClient AngularJS adapter
 
