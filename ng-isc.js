@@ -631,7 +631,7 @@
                             }
 
                             // process configObject
-                            angular.forEach(attrs.scConfigObject && scope.$eval(attrs.scConfigObject), function (value, key) {
+                            angular.forEach(attrs.scConfigObject && $scope.$eval(attrs.scConfigObject), function (value, key) {
                                 processAttr('sc' + key.charAt(0).toUpperCase() + key.slice(1), value, false);
                             });
                             // process tag attributes
@@ -679,7 +679,7 @@
                                         defaultHandler.apply(this, arguments);
                                     }
                                     return res;
-                                }
+                                };
                             });
 
                             // subscribe to the all attributes values
@@ -727,13 +727,13 @@
                         // create control
                         ctrl.createControl(element, attrs);
                         // init data binding
-                        if (ngMod.DataBindedTypes.indexOf(ctrl.className) != -1 && !attrs.scDataSource) {
+                        if (ngMod.DataBindedTypes.indexOf(ctrl.className) !== -1 && !attrs.scDataSource) {
                             ctrl.dataFetch = (attrs.scDataFetch && scope.$eval(attrs.scDataFetch)) || ctrl.control.dataFetch;
-                            var ds = DataSource.create({
+                            var ds = isc.DataSource.create({
                                 dataProtocol: "clientCustom",
                                 fields: ctrl.control.fields,
                                 transformRequest: function (dsRequest) {
-                                    if (dsRequest.operationType == "fetch") {
+                                    if (dsRequest.operationType === "fetch") {
                                         if (angular.isFunction(ctrl.dataFetch)) {
                                             $q.when(ctrl.dataFetch.apply(scope, [dsRequest])).then(function (response) {
                                                 ds.processResponse(dsRequest.requestId, response);
@@ -795,7 +795,7 @@
                                 };
                                 var res = null;
                                 eventCounter++;
-                                if (eventCounter == 1) {
+                                if (eventCounter === 1) {
                                     res = scope.$apply(h);
                                 } else {
                                     res = h();
