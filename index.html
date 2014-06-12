@@ -57,65 +57,64 @@
 
             <p>Allows you to use Isomorphic SmartClient (ISC) Library widgets in AngularJS projects.</p>
 
-<pre><code>   &lt;!doctype html&gt;
+<pre><code>    &lt;!doctype html&gt;
     &lt;html ng-app="sampleApp"&gt;
     &lt;head&gt;
-    &lt;!-- setup Isomorphic SmartClient --&gt;
-    &lt;script&gt;var isomorphicDir = "lib/isomorphic/";&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_Core.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_Foundation.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_Containers.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_Grids.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_Forms.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_DataBinding.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/system/modules/ISC_RichTextEditor.js"&gt;&lt;/script&gt;
-    &lt;script src="lib/isomorphic/skins/SmartClient/load_skin.js"&gt;&lt;/script&gt;
+        &lt;!-- setup Isomorphic SmartClient --&gt;
+        &lt;script&gt;var isomorphicDir = "lib/isomorphic/";&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_Core.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_Foundation.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_Containers.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_Grids.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_Forms.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_DataBinding.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/system/modules/ISC_RichTextEditor.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/isomorphic/skins/SmartClient/load_skin.js"&gt;&lt;/script&gt;
 
-    &lt;script src="lib/js/angular.min.js"&gt;&lt;/script&gt;
+        &lt;script src="lib/js/angular.min.js"&gt;&lt;/script&gt;
 
-    &lt;script src="ng-isc.js"&gt;&lt;/script&gt;
+        &lt;script src="ng-isc.js"&gt;&lt;/script&gt;
 
-    &lt;style type="text/css"&gt;
-    html, body {
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    }
+        &lt;style type="text/css"&gt;
+        html, body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
 
-
-    .full {
-    width: 100%;
-    height: 100%;
-    }
-    &lt;/style&gt;
+        .full {
+            width: 100%;
+            height: 100%;
+        }
+        &lt;/style&gt;
     &lt;/head&gt;
     &lt;body ng-controller="SampleCtrl"&gt;
-    &lt;!--root isomorphic directive must be defined as attribute in valid html tag, because ISC control get his
-    dimensions--&gt;
-    &lt;div class="full" isc-v-layout sc-width="'100%'" sc-height="'100%'"&gt;
-    &lt;isc-list-grid sc-width="'100%'" sc-height="'50%'" sc-fields="fields" sc-data="data" ng-model="value"
-    sc-show-resize-bar="true" sc-on-row-double-click="onDoubleClick"&gt;&lt;/isc-list-grid&gt;
-    &lt;isc-dynamic-form sc-width="'100%'" sc-height="'*'" sc-fields="fields" ng-model="value"&gt;&lt;/isc-dynamic-form&gt;
-    &lt;isc-rich-text-editor sc-width="'100%'" sc-height="'10%'" ng-model="out"&gt;&lt;/isc-rich-text-editor&gt;
-    &lt;/div&gt;
+        &lt;!--root isomorphic directive must be defined as attribute in valid html tag, because ISC control get his
+        dimensions--&gt;
+        &lt;div class="full" isc-v-layout sc-width="'100%'" sc-height="'100%'"&gt;
+            &lt;isc-list-grid sc-width="'100%'" sc-height="'50%'" sc-fields="fields" sc-data="data" ng-model="value"
+                sc-show-resize-bar="true" sc-on-row-double-click="onDoubleClick"&gt;&lt;/isc-list-grid&gt;
+            &lt;isc-dynamic-form sc-width="'100%'" sc-height="'*'" sc-fields="fields" ng-model="value"&gt;&lt;/isc-dynamic-form&gt;
+            &lt;isc-rich-text-editor sc-width="'100%'" sc-height="'10%'" ng-model="out"&gt;&lt;/isc-rich-text-editor&gt;
+        &lt;/div&gt;
 
-    &lt;script type="text/javascript"&gt;
-    angular.module('sampleApp', ['ng-isc']).controller('SampleCtrl', ['$scope', function ($scope) {
-    $scope.fields = [
-    {name: 'name'},
-    {name: 'value'}
-    ];
-    $scope.data = [
-    {name: 'one', value: 1},
-    {name: 'two', value: 2},
-    {name: 'three', value: 3}
-    ];
-    $scope.out = '';
-    $scope.onDoubleClick = function (record, recordNum, fieldNum) {
-    $scope.out += 'Record ' + recordNum + ' double clicked&lt;br&gt;';
-    };
-    }]);
-    &lt;/script&gt;
+        &lt;script type="text/javascript"&gt;
+            angular.module('sampleApp', ['ng-isc']).controller('SampleCtrl', ['$scope', function ($scope) {
+                $scope.fields = [
+                    {name: 'name'},
+                    {name: 'value'}
+                ];
+                $scope.data = [
+                    {name: 'one', value: 1},
+                    {name: 'two', value: 2},
+                    {name: 'three', value: 3}
+                ];
+                $scope.out = '';
+                $scope.onDoubleClick = function (record, recordNum, fieldNum) {
+                    $scope.out += 'Record ' + recordNum + ' double clicked&lt;br&gt;';
+                };
+            }]);
+        &lt;/script&gt;
     &lt;/body&gt;
     &lt;/html&gt;</code></pre>
 
@@ -135,10 +134,10 @@
 
 <pre><code> // controller
     function SampleCtrl($scope) {
-    $scope.config = {
-    width: '100%',
-    height: '100%'
-    };
+        $scope.config = {
+            width: '100%',
+            height: '100%'
+        };
     }
 
     // html
