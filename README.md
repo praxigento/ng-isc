@@ -15,6 +15,10 @@ Isomorphic SmartClient AngularJS adapter
 
 [LGPLv3](https://www.gnu.org/licenses/lgpl-3.0.txt)
 
+## Documentation
+
+Some info about library can be found on the [gh-pages site](http://praxigento.github.io/ng-isc/) for this repo.
+
 ## Development
 
 ### Initialization
