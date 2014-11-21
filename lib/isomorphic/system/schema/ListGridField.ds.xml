@@ -127,6 +127,8 @@
         <field name="filterEditorType"  type="className" />
         <field name="filterEditorProperties" type="ListGrid"/>
         
+        <field name="canEditFormula" type="boolean"/>
+        <field name="canEditSummary" type="boolean"/>
         <field name="canGroupBy" type="boolean"/>
         <field name="groupPrecision" type="number"/>
         <field name="groupGranularity" type="number"/>

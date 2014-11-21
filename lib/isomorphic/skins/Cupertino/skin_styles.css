@@ -51,8 +51,14 @@
 	1) General
 ============================================================*/
 
+ol,
+ul {
+    -webkit-text-size-adjust: 100%;
+}
+
 /* default text */
-.normal {
+.normal,
+.normalFocused {
     font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
 }
 
@@ -407,7 +413,8 @@
     font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:darkred;
     background-color:#FAFAD2
 }
-.formHint {
+.formHint,
+.formHintDisabled {
     font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666; padding:3px;
 }
 
@@ -436,6 +443,16 @@
     background-color:#FFFFFF;
 }
 
+/*
+Cupertino relies on the browser's user-agent stylesheet to apply a disabled text color to
+disabled TextItems. The GrayText CSS2 system color keyword should refer to this disabled text
+color, but some browsers (e.g. Firefox 31.0, Chrome 36) actually use a different color. So,
+we apply color:GrayText ourselves.
+*/
+.textItemDisabled,
+.textItemDisabledHint {
+    color: GrayText;
+}
 
 .textItemHint {
     color:#666666;
@@ -456,7 +473,7 @@
 .selectItemTextDisabled,
 .selectItemTextDisabledHint {
     font-family:Verdana,Bitstream Vera Sans,Helvetica,sans-serif; font-size:11px; margin:2px;
-    color:#ACA899; 
+    color:GrayText;
 }
 
 .selectItemTextItemHint {
@@ -478,6 +495,14 @@
 .selectItemPickerIconDisabled,
 .selectItemPickerIconError {
     padding:1px;
+}
+
+/*
+Cupertino relies on the browser's user-agent stylesheet to apply a disabled text color to
+disabled TextItems. Use the CSS2 system color keyword 'GrayText'.
+*/
+.staticTextItemDisabled {
+    color: GrayText;
 }
 
 .pickListMenuBody {
@@ -731,10 +756,12 @@
 .sliderTitle {
     font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; font-weight:bold;
 }
-.sliderRange {
+.sliderRange,
+.sliderRangeDisabled {
     font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:gray
 }
-.sliderValue {
+.sliderValue,
+.sliderValueDisabled {
     font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px;
 }
 
@@ -807,7 +834,8 @@
     padding:1px;
     border:1px dotted blue;
 }
-.dragLine {
+.dragLine,
+.dragLineVertical {
     background-color:#98A1DA;
     pointer-events: none;
 }
@@ -1562,6 +1590,9 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 ============================================================*/
 .calendar,
 .calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark,
 .calendarWorkdayDisabled,
 .calendarWorkday,
 .calendarDark {
@@ -1573,7 +1604,10 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
 .calendarWorkdayDisabled,
 .calendarDark,
-.calendarDisabled {
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark {
     background-color:gainsboro;    
 }
 
@@ -1595,12 +1629,23 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
     border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
     background-color:#CCCCCC; 
 }
-.labelColumn {
+.labelColumn,
+.labelColumnDark,
+.labelColumnOver,
+.labelColumnOverDark {
     font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
     color:black;
     border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
     background-color:gainsboro;
 }
+
+.labelColumnOver,
+.labelColumnOverDark, 
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+  background-color: #a4bbdb;
+}
+
 /* ----month---- */
 /* calMonthDayHeader and Body */
 
@@ -1697,26 +1742,80 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 .eventWindow {
     font-size:9px;
     background-color:#649ED8;
-   border: 1px solid #004D99;
-   
+    border: 1px solid #004D99;
+    padding: 0px;
+    margin: 0px;
 }
 
-.eventWindowHeader {
+.eventWindowHeader,
+.eventWindowGripper,
+.eventWindowLabel {
     font-size:9px; color: white;
     background-color:#004D99;
-  
+    margin: 0px;
 }
 
 .eventWindowBody {
     font-size: 9px;
     background-color: #649ED8;
     padding: 3px;
-    
 }
 
 .eventWindowResizer{
     border-top:1px solid white;
     border-bottom: 1px solid white;
+}
+
+/* --- ZoneCanvas --- */
+
+.zoneCanvas {
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.zoneCanvasHeader,
+.zoneCanvasGripper,
+.zoneCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: grey;
+  left: 0;
+  bottom: 0;
+}
+
+/* --- IndicatorCanvas --- */
+
+.indicatorCanvas {
+  background-color: #AA0000;
+}
+
+.indicatorCanvasHeader,
+.indicatorCanvasGripper,
+.indicatorCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: #AA0000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* make all grippers rounded */
+.eventWindowGripper,
+.indicatorCanvasGripper,
+.zoneCanvasGripper {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* show a border around floating labels */
+.eventWindowLabel,
+.zoneCanvasLabel,
+.indicatorCanvasLabel {
+  border: 1px solid black;
 }
 
 /*============================================================
@@ -1733,7 +1832,7 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 
 .propSheetValue,
 .propSheetValueFocused,
-.propSheetDisabled {
+.propSheetValueDisabled {
     font-family:Verdana,Bitstream Vera Sans,sans-serif;
     font-size:11px;
     border-bottom:1px solid #AAAAAA;

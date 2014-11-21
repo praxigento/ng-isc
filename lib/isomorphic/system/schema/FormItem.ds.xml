@@ -134,6 +134,7 @@
     
         <field name="dateFormatter" type="string"/>
         <field name="timeFormatter" type="string" />
+        <field name="format" type="string" />
 	
         <!--  Below are subclass-specific properties included here because our XML processor
               is not currently capable of using specific FormItem subclass schema when just 
@@ -141,6 +142,12 @@
               In order to avoid showing inapplicable properties in editors or allowing invalid
               D&D in Visual Builder, all of these should be marked hidden="true" then
               redeclared in the specific subclass where there are really used. -->
+            <!-- TextItem -->
+            <field name="length" type="positiveInteger" title="Length" hidden="true"/>
+
+            <!-- SelectItem -->
+            <field name="multiple" type="boolean" title="Select Multiple" hidden="true"/>
+
 			<!-- ToolbarItem properties -->		
 			<field name="buttons" multiple="true" type="ButtonItem" hidden="true"/>
 			<field name="spacing" type="positiveInteger" hidden="true"/>
@@ -149,7 +156,8 @@
 
             <!-- RadioGroup -->
             <field name="vertical" type="boolean" hidden="true"/>
-            
+            <field name="itemHeight" type="positiveInteger" title="Item Height" visibility="internal"/>
+
             <!-- SectionItem -->
             <field name="itemIds" type="string" multiple="true" hidden="true"/>
             <!-- sectionVisible is backcompat for sectionExpanded -->
@@ -173,7 +181,11 @@
             
             <!-- DateItem -->
             <field name="useTextField" type="boolean" title="Use Text Field" hidden="true" />
-            
+
+            <!-- TimeItem -->
+            <field name="show24HourTime" type="boolean" title="Show 24Hour Time" defaultValue="true" hidden="true" />
+            <field name="showSeconds" type="boolean" title="Show Seconds" defaultValue="false" hidden="true"/>
+
             <!-- CanvasItem -->
             <field name="canvas"    type="Canvas" hidden="true"/>    
             <field name="canvasConstructor" type="string" hidden="true"/>                
@@ -183,9 +195,13 @@
             <!-- StaticTextItem and BlurbItem -->
             <field name="wrap" type="boolean" hidden="true" />
             <field name="clipValue" type="boolean" hidden="true"/>
-         
+            <field name="outputAsHTML"  type="boolean" title="Output as HTML" visibility="internal" hidden="true"/>
+
             <field name="showFocusedIcons" type="boolean"/>
-            
+
+            <!-- ListGridField -->
+            <field name="rebuildOnChange" type="boolean" hidden="true" />
+
             <!-- skinning properties that shouldn't be set in the Visual Builder property sheet-->
             <field name="errorIconHeight" type="number" advanced="true"/>
             <field name="errorIconWidth" type="number" advanced="true"/>
@@ -193,6 +209,12 @@
             <field name="errorMessageWidth" type="number"/>
             
 	</fields>
+
+    <!-- Subclass-specific methods -->  
+    <methods>
+        <!-- ButtonItem -->
+        <method action="event" title="Click" name="click" basic="true" />
+    </methods>
 
     <types>
         <type ID="FormItemType"> 

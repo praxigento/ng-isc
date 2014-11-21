@@ -15,6 +15,7 @@ Validator.ds.xml
     <fields>
         <!-- basics -->
 	    <ID type="string" xmlAttribute="true"/>
+        <autoIdField type="string" xmlAttribute="true"/>
 
 	    <inheritsFrom type="string" title="Superclass"/>
         <useParentFieldOrder type="boolean"/>
@@ -33,8 +34,13 @@ Validator.ds.xml
         <noAutoFetch type="boolean" xmlAttribute="true"/>
         <serverType type="string" title="Server Type" xmlAttribute="true">
             <valueMap sql="ISC Server SQL Connectors" 
-                      custom="Custom Server Binding"/>
+                      hibernate="ISC Server Hibernate Connectors" 
+                      jpa="Use SmartClient's built-in JPA 2.0 connector" 
+                      jpa1="Use SmartClient's built-in JPA 1.0 connector" 
+                      generic="Requests will be delivered to the server and you are expected to write Java code to create a valid response"
+                      />
         </serverType>
+        <schemaBean type="string" xmlAttribute="true" />
         <callbackParam type="string" title="Callback Parameter" xmlAttribute="true"/>
         <requestProperties type="Object"/>
 
@@ -52,9 +58,12 @@ Validator.ds.xml
 	    <schema type="string" title="Schema" xmlAttribute="true"/>
 	    <tableName type="string" title="Table Name" xmlAttribute="true"/>
 	    <quoteTableName type="boolean" title="Quote Table Name?" xmlAttribute="true"/>
+        <tableCode type="string" xmlAttribute="true"/>
 
         <!-- serverObject definition that applies as a default to all operationBindings -->
         <serverObject type="ServerObject"/>
+
+        <serverConstructor type="string"/>
 
         <!-- operationBindings for each operation type -->
         <operationBindings multiple="true" type="OperationBinding"/>
@@ -102,9 +111,11 @@ Validator.ds.xml
         <!-- clientOnly / caching DataSources -->
 	    <clientOnly type="boolean" title="Client Only" xmlAttribute="true"/>
 	    <testFileName type="URL" title="Test File Name" xmlAttribute="true"/>
+        <dbImportFileName type="URL" xmlAttribute="true" />
 	    <testData type="Object" multiple="true"/>
 	    <cacheData type="Object" multiple="true"/>
 	    <cacheAllData type="boolean" xmlAttribute="true"/>
+	    <cacheAcrossOperationIds type="boolean" xmlAttribute="true"/>
 
         <!-- for declaring inline types -->
 	    <types type="DataSourceField" multiple="true" propertiesOnly="true" 
@@ -120,6 +131,7 @@ Validator.ds.xml
         
         <useFlatFields type="boolean"/>
         <showLocalFieldsOnly type="boolean" xmlAttribute="true"/>
+        <showSuperClassEvents type="boolean" xmlAttribute="true"/>
 
         <globalNamespaces type="Object"/>
         
@@ -133,12 +145,15 @@ Validator.ds.xml
 
         <!-- Security -->
         <requiresAuthentication type="boolean"/>
-        <requiresRoles type="boolean"/>
+        <requiresRole type="string"/>
         <requires type="string" />
 
         <beanClassName type="string" xmlAttribute="true"/>
         
         <autoJoinTransactions type="boolean" xmlAttribute="true"/>
+        <useAnsiJoins type="boolean" />
+        
+        <useSpringTransaction type="boolean" xmlAttribute="true"/>
         
         <sparseUpdates type="boolean" />
         <noNullUpdates type="boolean" />
@@ -147,13 +162,60 @@ Validator.ds.xml
 
         <progressiveLoading type="boolean" />
 
-        <allowAdvancedCriteria type="boolean" />
+        <allowAdvancedCriteria type="boolean" xmlAttribute="true" />
         
         <scriptImport type="string"/>
         <script type="Object" idAllowed="true"/>
 
         <allowClientRequestedSummaries type="boolean" />
 
+        <patternMultiWildcard type="string" multiple="true" />
+        <patternSingleWildcard type="string" multiple="true" />
+        <criteriaPolicy type="string">
+            <valueMap dropOnChange="Drop on criteria change" 
+                dropOnShortening="Drop if criteria became more restrictive" />
+        </criteriaPolicy>
+        <substituteClasses type="string" />
+        <idClassName type="string" />
+        <supportTransactions type="boolean" />
+        <creatorOverrides type="boolean" />
+        <loadParents type="boolean" xmlAttribute="true" />
+        <loadID type="string" />
+
+        <!-- audit -->
+        <audit type="boolean" />
+        <auditDataSourceID type="string" />
+        <auditDSConstructor type="string" />
+        <auditRevisionFieldName type="string" />
+        <auditTimeStampFieldName type="string" />
+        <auditTypeFieldName type="string" />
+        <auditUserFieldName type="string" />
+
+        <autoCreateAuditTable type="boolean" />
+        <inheritanceMode type="string" >
+            <valueMap full="Inherit fields by copying them onto the inheriting DataSource's underlying table." 
+                      none="Do not physically inherit fields onto the inheriting DataSource's SQL table" />
+        </inheritanceMode>
+        <quoteColumnNames type="boolean" />
+        <generatedBy type="string" xmlAttribute="true" />
+        <useUTCDateTimes type="boolean" />
+        <useOfflineStorage type="boolean" />
+        <enumOrdinalProperty type="string" />
+        <enumTranslateStrategy type="string">
+            <valueMap string="Translates to/from a String matching the constant name." 
+                      ordinal="Translates to/from an integer matching the ordinal number of the constant within the enumeration"
+                      bean="Translates to/from a Javascript object containing one property for each property defined within the enum." />
+        </enumTranslateStrategy>
+        <xmlFromConfig type="boolean" />
+        <translatePatternOperators type="boolean" />
+
+        <!-- fileSource -->
+        <fileNameField type="string" />
+        <fileTypeField type="string" />
+        <fileFormatField type="string" />
+        <fileSizeField type="string" />
+        <fileLastModifiedField type="string" />
+        <fileContentsField type="string" />
     </fields>
 </Object>
 

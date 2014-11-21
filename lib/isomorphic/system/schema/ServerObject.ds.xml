@@ -2,6 +2,7 @@
     <fields>
         <ID type="string"/>
         <className type="string"/>
+        <methodName type="string"/>
         <lookupStyle type="enum">
             <valueMap new="new" factory="factory" attribute="attribute" spring="spring"/>
         </lookupStyle>
@@ -12,5 +13,6 @@
         <bean type="string"/>
         <visibleMethods multiple="true" type="Method" propertiesOnly="true"/>
         <dropExtraFields type="boolean"/>
+        <crudOnly type="boolean" />
     </fields>
 </Object>

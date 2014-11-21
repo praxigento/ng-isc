@@ -28,7 +28,7 @@ types (since it defines them!)
     <number inheritsFrom="integer"/>
     <decimal inheritsFrom="float"/>
     <double inheritsFrom="float"/>
-    <dateTime inheritsFrom="date"/>
+    <dateTime inheritsFrom="datetime"/>
     <datetime inheritsFrom="date"/>
 
     <!-- Integer variants -->
@@ -69,6 +69,11 @@ types (since it defines them!)
     <ntext inheritsFrom="text" sqlStorageStrategy="ntext" />
 
     <password inheritsFrom="text" />
+
+    <localeInt inheritsFrom="integer" />
+    <localeFloat inheritsFrom="float" />
+    <localeCurrency inheritsFrom="decimal" />
+    <phoneNumber inheritsFrom="text" />
 
     <!-- regexp is a string which must be a valid regular expression -->
     <regexp inheritsFrom="text" validators="isRegexp"/>

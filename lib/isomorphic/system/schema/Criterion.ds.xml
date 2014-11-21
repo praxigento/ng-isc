@@ -3,6 +3,8 @@
         <fieldName type="string"/>
         <operator type="string"/>
         <value type="any"/>
+        <start type="any"/>
+        <end type="any"/>
         <criteria type="Criterion" multiple="true"/>
     </fields>
 </Object>

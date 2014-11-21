@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE HTML>
 <HTML>
 <HEAD>
 
@@ -38,16 +38,61 @@ if (window.parent && window.parent.isc) {
 
     // Write out the title so we print with the appropriate title
     if (params.title) document.write("<TITLE>" + params.title + "</TITLE>");
+
+    // check if there are any inlined CSS styles declared in <STYLE> tags
+    var ss = window.parent.document && window.parent.document.styleSheets;
+    if (ss) {
+        var tagWritten = false;
+        for (var i=0; i<ss.length; i++) {
+            var styleSheet = ss[i];
+            if (styleSheet && !styleSheet.href) {
+                
+                if (!tagWritten) {
+                    document.write("<STYLE>");
+                    tagWritten = true;
+                }
+                var rules = null;
+                if (typeof styleSheet.cssRules != "undefined") { // "cssRules" is the standard
+                    rules = styleSheet.cssRules;
+                } else if (typeof styleSheet.rules != "undefined") { // but IE6 had "rules"
+                    rules = styleSheet.rules;
+                }
+                if (rules) {
+                    for (var j=0; j<rules.length; j++) {
+                        document.write(rules[j].cssText);
+                    }
+                }
+            }
+        }
+        if (tagWritten) document.write("</STYLE>");
+    }
+
 }
 </SCRIPT>
 </HEAD>
 <BODY STYLE="overflow:visible;" onload="pageLoaded()" onafterprint="printed()">
 <SCRIPT>
 if (window.parent && window.parent.isc) {
-    // note that we need the parent.isc object to resolve the skinImgDir
-    document.write('<LINK REL="STYLESHEET" TYPE="text/css" HREF=' + 
-                   window.parent.isc.Page.getURL("[SKIN]/skin_styles.css")+
-                   ">");
+
+    var ss = window.parent.document && window.parent.document.styleSheets;
+    if (ss) {
+        
+        for (var i=0; i<ss.length; i++) {
+            var styleSheet = ss[i];
+            // if there's no href, this is a styleSheet representing a bunch of styles defined
+            // in a <style> tag somewhere - ignore these here - they've already been written
+            // out into a <style> tag in the <head> element
+            if (!styleSheet || !styleSheet.href) continue;
+            var tag = '<LINK REL="STYLESHEET" TYPE="text/css" HREF=' + styleSheet.href +">";
+            document.write(tag);
+        }
+    } else {
+
+        // note that we need the parent.isc object to resolve the skinImgDir
+        document.write('<LINK REL="STYLESHEET" TYPE="text/css" HREF=' + 
+                       window.parent.isc.Page.getURL("[SKIN]/skin_styles.css")+
+                       ">");
+    }
 }
 </SCRIPT>
 

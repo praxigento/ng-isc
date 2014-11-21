@@ -480,7 +480,7 @@
 
 .tPropSheetValue,
 .tPropSheetValueFocused,
-.tPropSheetDisabled {
+.tPropSheetValueDisabled {
     font-family:Verdana,Bitstream Vera Sans,sans-serif;
     font-size:11px;
     border-bottom:1px solid #AAAAAA;

@@ -70,6 +70,10 @@
         <!-- unique constraints / relations -->
 		<primaryKey type="boolean" title="Is Primary Key" xmlAttribute="true"/>
 	    <foreignKey type="string" title="Foreign Key" xmlAttribute="true"/>
+        <joinType type="string" xmlAttribute="true">
+            <valueMap inner="A regular inner join" 
+                      outer="An outer join"/>
+        </joinType>
         <!-- for tree relations -->
 	    <rootValue type="string" title="Tree Root Value" xmlAttribute="true"/> 
         <!-- included from a related DataSource -->
@@ -107,7 +111,12 @@
         <validateEachItem type="boolean" xmlAttribute="true" />
 
         <pickListFields type="Object" multiple="true"/>
-        
+        <multipleStorage type="string" xmlAttribute="true">
+            <valueMap simpleString="Delimeter-separated string" 
+                      json="JSON serialisation"
+                      none="No transformation is applied to values"/>
+        </multipleStorage>
+
         <canFilter type="boolean" xmlAttribute="true" />
         <ignore type="boolean"/>
 
@@ -125,6 +134,7 @@
         <frozen type="boolean" title="Frozen" xmlAttribute="true"/>
 
         <canExport type="boolean" xmlAttribute="true" />
+        <exportTitle type="string" xmlAttribute="true" />
 
         <sqlStorageStrategy type="string" xmlAttribute="true" />
 
@@ -144,6 +154,50 @@
         <joinSuffix type="string" xmlAttribute="true"/>
         
         <allowClientRequestedSummaries type="boolean" />
-        
+        <defaultValue type="string" xmlAttribute="true"/>
+        <group type="string" xmlAttribute="true"/>
+        <!-- for types -->
+        <ID type="string" xmlAttribute="true"/>
+        <inheritsFrom type="string" xmlAttribute="true"/>
+
+        <javaClass type="string" xmlAttribute="true"/>
+        <javaCollectionClass type="string" xmlAttribute="true"/>
+        <javaKeyClass type="string" xmlAttribute="true"/>
+
+        <storeWithHash type="string" xmlAttribute="true">
+            <valueMap MD5="Message Digest algorithm 5" 
+                      SHA="Secure Hashing Algorithm (SHA-1)"/>
+        </storeWithHash>
+        <sqlDateFormat type="string" />
+
+        <initRequiresAuthentication type="boolean" />
+        <viewRequiresAuthentication type="boolean" />
+        <editRequiresAuthentication type="boolean" />
+        <updateRequiresAuthentication type="boolean" />
+        <initRequiresRole type="string" />
+        <viewRequiresRole type="string" />
+        <editRequiresRole type="string" />
+        <updateRequiresRole type="string" />
+        <initRequires type="string" />
+        <viewRequires type="string" />
+        <editRequires type="string" />
+        <updateRequires type="string" />
+
+        <customSelectExpression type="string" />
+        <customCriteriaExpression type="string" />
+        <customInsertExpression type="string" />
+        <customUpdateExpression type="string" />
+        <customSQL type="boolean" />
+        <autoQuoteCustomExpressions type="boolean" />
+        <creatorOverrides type="boolean" />
+        <valueWriteXPath type="string" />
+        <useJoin type="boolean" />
+        <tableName type="string" />
+        <multipleStorageSeparator type="string" />
+        <defineSQLColumnAsNotNull type="boolean" />
+        <valueMapEnum type="string" />
+        <sqlFalseValue type="string" />
+        <sqlTrueValue type="string" />
+        <columnCode type="string" xmlAttribute="true"/>
 	</fields>
 </Object>

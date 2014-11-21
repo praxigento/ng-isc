@@ -59,6 +59,9 @@
 		<field name="opacity"			type="integerPercent" title="Opacity"/>
 		<field name="prompt"			type="HTMLString" title="Tooltip Prompt"/>
 
+        <field name="isGroup"           type="boolean" title="Is Group?" /> 
+        <field name="groupTitle"        type="string" title="Group Title" /> 
+
         <!-- hovers -->
         <field name="canHover"  type="boolean" />
         <field name="showHover" type="boolean" />

@@ -2,6 +2,7 @@
     <fields>
         <field  name="id"   type="string" />
         <field  name="title"    type="string" />
+        <field  name="inlinedValues"   type="boolean" />
         <field  name="values"   type="FacetValue"   multiple="true" />
         <field  name="rollupValue"  type="FacetValueId" />
         <field  name="isTree"   type="boolean" />

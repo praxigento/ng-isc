@@ -57,8 +57,14 @@
 	1) General
 ============================================================*/
 
+ol,
+ul {
+    -webkit-text-size-adjust: 100%;
+}
+
 /* default text */
-.normal {
+.normal,
+.normalFocused {
     font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
 }
 
@@ -491,6 +497,7 @@
 .formCellError,
 .formTitleError,
 .formHint,
+.formHintDisabled,
 .headerItem,
 .headerItemDisabled,
 .headerItemError,
@@ -527,7 +534,8 @@
     font-weight:bold; color:#204268; 
     background-color:#CFD9F2
 }
-.formHint {
+.formHint,
+.formHintDisabled {
     color:#666666; padding:3px;
 }
 
@@ -550,6 +558,10 @@
 }
 .textItemHint {
     color:#666666;
+}
+.textItemDisabled,
+.textItemDisabledHint {
+    color:#ACA899;
 }
 
 .comboBoxItemPendingText {
@@ -591,6 +603,10 @@
 .selectItemPickerIconDisabled,
 .selectItemPickerIconError {
     padding:0px;
+}
+
+.staticTextItemDisabled {
+    color:#ACA899;
 }
 
 .pickListMenuBody {
@@ -762,7 +778,9 @@
 /* slider and rangebar labels */
 .sliderTitle,
 .sliderRange,
+.sliderRangeDisabled,
 .sliderValue,
+.sliderValueDisabled,
 .rangebarTitle,
 .rangebarRange,
 .rangebarValue {
@@ -773,6 +791,7 @@
     font-weight:bold;
 }
 .sliderRange,
+.sliderRangeDisabled,
 .rangebarRange {
     color:gray;
 }
@@ -841,7 +860,8 @@
     padding:1px;
     border:1px dotted blue;
 }
-.dragLine {
+.dragLine,
+.dragLineVertical {
     background-color:#404040;
     pointer-events: none;
 }
@@ -1723,6 +1743,9 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 ============================================================*/
 .calendar,
 .calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark,
 .calendarWorkday,
 .calendarWorkdayDisabled,
 .calendarDark {
@@ -1734,7 +1757,10 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
 .calendarWorkdayDisabled,
 .calendarDark,
-.calendarDisabled {
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark {
     background-color:gainsboro;    
 }
 
@@ -1756,12 +1782,23 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
     border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
     background-color:#CCCCCC; 
 }
-.labelColumn {
+.labelColumn,
+.labelColumnDark,
+.labelColumnOver,
+.labelColumnOverDark {
     font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
     color:black;
     border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
     background-color:gainsboro;
 }
+
+.labelColumnOver,
+.labelColumnOverDark, 
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+  background-color: #a4bbdb;
+}
+
 /* ----month---- */
 /* calMonthDayHeader and Body */
 
@@ -1858,14 +1895,17 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 .eventWindow {
     font-size:9px;
     background-color:#649ED8;
-   border: 1px solid #004D99;
-   
+    border: 1px solid #004D99;
+    padding: 0px;
+    margin: 0px;
 }
 
-.eventWindowHeader {
+.eventWindowHeader,
+.eventWindowGripper,
+.eventWindowLabel {
     font-size:9px; color: white;
     background-color:#004D99;
-  
+    margin: 0px;
 }
 
 .eventWindowBody {
@@ -1878,6 +1918,58 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 .eventWindowResizer{
     border-top:1px solid white;
     border-bottom: 1px solid white;
+}
+
+/* --- ZoneCanvas --- */
+
+.zoneCanvas {
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.zoneCanvasHeader,
+.zoneCanvasGripper,
+.zoneCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: grey;
+  left: 0;
+  bottom: 0;
+}
+
+/* --- IndicatorCanvas --- */
+
+.indicatorCanvas {
+  background-color: #AA0000;
+}
+
+.indicatorCanvasHeader,
+.indicatorCanvasGripper,
+.indicatorCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: #AA0000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* make all grippers rounded */
+.eventWindowGripper,
+.indicatorCanvasGripper,
+.zoneCanvasGripper {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* show a border around floating labels */
+.eventWindowLabel,
+.zoneCanvasLabel,
+.indicatorCanvasLabel {
+  border: 1px solid black;
 }
 
 /*============================================================
@@ -1894,7 +1986,7 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 
 .propSheetValue,
 .propSheetValueFocused,
-.propSheetDisabled {
+.propSheetValueDisabled {
     font-family:Verdana,Bitstream Vera Sans,sans-serif;
     font-size:11px;
     border-bottom:1px solid #AAAAAA;

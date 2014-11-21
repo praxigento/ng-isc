@@ -5,5 +5,7 @@
         <field name="description" type="string"/>
         <field name="action" type="boolean"/>
         <field name="params" type="ParamsDeclaration" multiple="true"/>
+        <field name="basic" type="boolean" />
+        <field name="icon" type="URL" />
     </fields>
 </DataSource>

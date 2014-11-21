@@ -5,7 +5,7 @@
 		<field name="buttonConstructor" 	type="className" visibility="internal"/>
         
         <field name="breadth"   type="positiveInteger" visibility="internal"/>
-        <field name="defaultTabSize" type="positiveInteger" visibilit="internal"/>
+        <field name="defaultTabSize" type="positiveInteger" visibility="internal"/>
 		<field name="selectedTabExpansion"	type="positiveInteger" visibility="internal"/>
 		<field name="baseLineThickness"		type="positiveInteger" visibility="internal"/>
 		<field name="baseLineCapSize"		type="positiveInteger" visibility="internal"/>

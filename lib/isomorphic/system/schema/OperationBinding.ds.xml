@@ -2,6 +2,14 @@
     <fields>
         <operationType type="string"/>
         <customSQL type="string"/>
+        <customHQL type="string"/>
+        <customJQL type="string"/>
+        <groupClause type="string"/>
+        <orderClause type="string"/>
+        <selectClause type="string"/>
+        <tableClause type="string"/>
+        <valuesClause type="string"/>
+        <whereClause type="string"/>
 
         <dataFormat type="string" title="DataFormat">
             <valueMap iscServer="ISC Java Server" 
@@ -54,13 +62,16 @@
         <spoofResponses type="boolean"/>
         <exportResults type="boolean"/>
         <exportDatesAsFormattedString type="boolean"/>
+        <exportAs type="string"/>
+        <exportFilename type="string"/>
+        <lineBreakStyle type="string"/>
         <useForCacheSync type="boolean"/>
         <canSyncCache type="boolean"/>
         <allowMultiUpdate type="boolean"/>
         
         <!-- Security -->
         <requiresAuthentication type="boolean"/>
-        <requiresRoles type="boolean"/>
+        <requiresRole type="string"/>
         <requires type="string" />
         
         <mail type="Mail" />
@@ -75,6 +86,8 @@
 
         <autoJoinTransactions type="boolean"/>
 
+        <useSpringTransaction type="boolean"/>
+
         <progressiveLoading type="boolean"/>
 
         <allowAdvancedCriteria type="boolean" />
@@ -82,11 +95,23 @@
         <scriptImport type="string"/>
         <script type="Object" idAllowed="true"/>
 
-        <summaryFunctions type="SummaryFunction" />
+        <summaryFunctions type="SummaryFunction" strictValidation="false" />
         <groupBy type="string" />
         <allowClientRequestedSummaries type="boolean" />
         
-        </fields>
+        <skipRowCount type="boolean"/>
+        <language type="string" />
+        <values type="DSRequestModifier" multiple="true" />
+        <criteria type="DSRequestModifier" multiple="true" />
+        <cacheSyncOperation type="string" />
+        <relaxSecurityForCacheSync type="boolean" />
+        <customCriteriaFields type="string" />
+        <excludeCriteriaFields type="string" />
+        <customValueFields type="string" />
+        <creatorOverrides type="boolean" />
+        <qualifyColumnNames type="boolean" />
+        <customFields type="string" />
+    </fields>
     
     <types>
         <type ID="DSProtocol" inheritsFrom="enum">

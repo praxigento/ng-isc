@@ -1,4 +1,6 @@
-<Object ID="Validator" __autoConstruct="DataSource" addGlobalId="false">
+<!-- strictValidation is false because parameters could be passed for server validation
+     by key that equals to value of methodName field. This should not throw a warning. -->
+<Object ID="Validator" __autoConstruct="DataSource" addGlobalId="false" strictValidation="false">
 	<fields>
         <!-- used by all validators -->
         <type type="string"/>					

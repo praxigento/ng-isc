@@ -7,6 +7,11 @@
 General
 ============================================================*/
 
+ol,
+ul {
+    -webkit-text-size-adjust: 100%;
+}
+
 .pageBackground {
     font-family:Arial,Verdana,sans-serif; font-size:11px;
     color:#333333;
@@ -14,7 +19,8 @@ General
 }
 
 /* default text */
-.normal {
+.normal,
+.normalFocused {
     font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
 }
 
@@ -497,6 +503,7 @@ Button (also used as MenuButton base style)
 .formCellError,
 .formTitleError,
 .formHint,
+.formHintDisabled,
 .headerItem,
 .headerItemDisabled,
 .headerItemError,
@@ -551,7 +558,8 @@ Button (also used as MenuButton base style)
 .formTitleError {
     font-weight:bold; color:#204268;
 }
-.formHint {
+.formHint,
+.formHintDisabled {
     color:#455668; padding:3px;
 }
 
@@ -585,12 +593,18 @@ Button (also used as MenuButton base style)
 .selectItemTextFocused,
 .selectItemTextDisabled,
 .selectItemTextHint,
-.selectItemTextDisabledHint {
+.selectItemTextDisabledHint,
+.comboBoxItemPendingText {
     border-right: 0;
 }
 .textItemDisabled,
-.textItemDisabledHint   {
-    color:#ACA899; 
+.textItemDisabledHint,
+.selectItemTextDisabled,
+.selectItemTextDisabledHint,
+.pickerSearchBoxDisabled,
+.pickerSearchBoxDisabledHint,
+.staticTextItemDisabled {
+    color:#ACA899;
 }
 
 .textItemHint {
@@ -800,6 +814,7 @@ Button (also used as MenuButton base style)
 .dateChooserWeekCellSelectedDisabled {
     font-family:Arial,Verdana,sans-serif; font-size:11px;
     background-color:#FFFFFF;
+    border:2px solid white;
     color:#868686;
 }
 
@@ -851,6 +866,7 @@ Button (also used as MenuButton base style)
 .dateChooserWeekendButtonSelectedOver,
 .dateChooserWeekendButtonSelectedDown {
     background-color:#fff1a8;
+    border:2px solid #fff1a8;
 }
 
 .dateChooserNavButton,
@@ -904,8 +920,11 @@ Button (also used as MenuButton base style)
     background-color:white;
 }
 
+.dateChooserDisabledWeekday,
+.dateChooserDisabledWeekdayOver,
 .dateChooserWeekdayDisabled,
 .dateChooserWeekendDisabled {
+    background-color:white;
 	color:#C0C3CA;
 }
 
@@ -913,7 +932,10 @@ Button (also used as MenuButton base style)
 .dateChooserWeekendOver,
 .dateChooserWeekendSelected,
 .dateChooserWeekendSelectedDisabled,
-.dateChooserWeekendDisabled {
+.dateChooserWeekendDisabled,
+.dateChooserDisabledWeekend,
+.dateChooserDisabledWeekendOver,
+.dateChooserDisabledWeekendDown  {
     border:2px solid #fff1a8;
     background-color:#fff1a8;
 }
@@ -923,15 +945,24 @@ Button (also used as MenuButton base style)
 	border:2px solid #ffeb90;
 }
 
+/* selected/over date-cell styling */
 .dateChooserWeekdaySelected,
 .dateChooserWeekdaySelectedOver,
 .dateChooserWeekdayDown,
 .dateChooserWeekdaySelectedDown,
 .dateChooserWeekendSelected,
-.dateChooserWeekendSelectedDisabled,    
 .dateChooserWeekendSelectedOver,
 .dateChooserWeekendDown,
-.dateChooserWeekendSelectedDown {
+.dateChooserWeekendSelectedDown ,
+/* disabled selected/over date-cells */
+.dateChooserDisabledWeekdayDown,
+.dateChooserDisabledWeekdaySelected,
+.dateChooserDisabledWeekdaySelectedDown,
+.dateChooserDisabledWeekdaySelectedOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedOver,
+.dateChooserDisabledWeekendSelectedDown {
 	font-weight:bold;
 	color:#4C4C4C;
     border:2px solid #ffdd2e;
@@ -957,11 +988,17 @@ Button (also used as MenuButton base style)
 /* slider and rangebar labels */
 .sliderTitle,
 .sliderRange,
+.sliderRangeDisabled,
 .sliderValue,
+.sliderValueDisabled,
 .rangebarTitle,
 .rangebarRange,
 .rangebarValue {
     font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:10px;
+}
+.sliderRangeDisabled,
+.sliderValueDisabled {
+    color:#ACA899;
 }
 .sliderTitle,
 .rangebarTitle {
@@ -1031,6 +1068,10 @@ Button (also used as MenuButton base style)
 }
 .dragLine {
     border-top:2px dotted #548ACA;
+    pointer-events: none;
+}
+.dragLineVertical {
+    border-right:2px dotted #548ACA;
     pointer-events: none;
 }
 
@@ -2236,6 +2277,9 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 ============================================================*/
 .calendar,
 .calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark,
 .calendarWorkday,
 .calendarWorkdayDisabled,
 .calendarDark {
@@ -2247,7 +2291,10 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
 .calendarWorkdayDisabled,
 .calendarDark,
-.calendarDisabled {
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark {
     background-color:gainsboro;    
 }
 
@@ -2269,12 +2316,23 @@ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
     border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
     background-color:#CCCCCC; 
 }
-.labelColumn {
+.labelColumn,
+.labelColumnDark,
+.labelColumnOver,
+.labelColumnOverDark {
     font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
     color:black;
     border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
     background-color:gainsboro;
 }
+
+.labelColumnOver,
+.labelColumnOverDark, 
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+  background-color: #a4bbdb;
+}
+
 /* ----month---- */
 /* calMonthDayHeader and Body */
 
@@ -2372,15 +2430,18 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
     font-size:9px;
     background-color:#EBF4FF;
     border: 1px solid #d0dff6;
-   
+    padding: 0px;
+    margin: 0px;
 }
 
-.eventWindowHeader {
+.eventWindowHeader,
+.eventWindowGripper,
+.eventWindowLabel {
     font-family:Arial,Verdana,Bitstream Vera Sans,sans-serif;
     font-size: 9px;
     color:#4C4C4C;
     background-color:#d0dff6;
-  
+    margin: 0px;
 }
 
 .eventWindowBody {
@@ -2394,6 +2455,58 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 .eventWindowResizer{
     border-top:1px solid white;
     border-bottom: 1px solid white;
+}
+
+/* --- ZoneCanvas --- */
+
+.zoneCanvas {
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.zoneCanvasHeader,
+.zoneCanvasGripper,
+.zoneCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: grey;
+  left: 0;
+  bottom: 0;
+}
+
+/* --- IndicatorCanvas --- */
+
+.indicatorCanvas {
+  background-color: #AA0000;
+}
+
+.indicatorCanvasHeader,
+.indicatorCanvasGripper,
+.indicatorCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: #AA0000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* make all grippers rounded */
+.eventWindowGripper,
+.indicatorCanvasGripper,
+.zoneCanvasGripper {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* show a border around floating labels */
+.eventWindowLabel,
+.zoneCanvasLabel,
+.indicatorCanvasLabel {
+  border: 1px solid black;
 }
 
 /*============================================================
@@ -2410,7 +2523,7 @@ a.calMonthEventLink:active {color:blue; text-decoration:none}
 
 .propSheetValue,
 .propSheetValueFocused,
-.propSheetDisabled {
+.propSheetValueDisabled {
     font-family:Verdana,Bitstream Vera Sans,sans-serif;
     font-size:11px;
     border-bottom:1px solid #AAAAAA;

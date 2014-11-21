@@ -98,6 +98,7 @@
 		<field name="headerBackgroundColor" type="color"/>
         <field name="headerBarStyle" type="cssClass" />
         <field name="headerBaseStyle" type="cssClass" />
+        <field name="headerSpans" type="HeaderSpan" multiple="true" />
         <field name="headerSpanHeight" type="number"/>
         <field name="headerTitleStyle" type="cssClass" />
         <field name="bodyBackgroundColor" type="color" />
@@ -150,6 +151,7 @@
         <field name="loadingMessage" type="HTMLString"/>
         <field name="loadingDataMessageStyle" type="cssClass"/>
 		<field name="canSort" type="boolean" basic="true"/>
+        <field name="sortField" type="string"/>
 		<field name="sortFieldNum" type="positiveInteger"/>
 		<field name="sortDirection" type="boolean"/>
 		<field name="showSortArrow" type="enum">

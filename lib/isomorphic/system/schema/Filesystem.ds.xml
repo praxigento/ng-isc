@@ -9,6 +9,8 @@
                required="true"
                primaryKey="true" />
 
+        <field name="variablePath" type="text" length="2000" hidden="true" />
+
         <field name="parentID"  hidden="true"  type="text"
                required="true"
                foreignKey="Filesystem.path"
@@ -20,7 +22,7 @@
         <field name="lastModified" type="lastModified"/>
         <field name="mimeType"  type="text"/>
 
-        <field name="contents"  type="text" size="1000000" />
+        <field name="contents"  type="text" length="1000000" />
         <field name="webrootOnly" type="boolean" />
         </fields>
 </DataSource>
