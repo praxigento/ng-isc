@@ -1,5 +1,5 @@
-<a name="0.1.1"></a>
-## 0.1.1 (2014-11-27)
+<a name="0.2.0"></a>
+## 0.2.0 (2014-11-27)
 
 * Add new directives scSectionStackSection and scTab for simplify work with SectionStack and TabSet controls
 * Refactoring
