@@ -89,7 +89,7 @@
  *
  * @module ng-isc
  *
- * @license ng-isc v0.1.1
+ * @license ng-isc v0.2.0
  * (c) 2014 Praxigento
  * License: LGPL
  *
