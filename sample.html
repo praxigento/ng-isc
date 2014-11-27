@@ -31,30 +31,55 @@
     </style>
 </head>
 <body ng-controller="SampleCtrl">
-    <!--root isomorphic directive must be defined as attribute in valid html tag, because ISC control get his dimensions-->
-    <div class="full" isc-v-layout sc-width="'100%'" sc-height="'100%'">
-        <isc-list-grid sc-width="'100%'" sc-height="'50%'" sc-fields="fields" sc-data="data" ng-model="value"
-                       sc-show-resize-bar="true" sc-on-row-double-click="onDoubleClick"></isc-list-grid>
-        <isc-dynamic-form sc-width="'100%'" sc-height="'*'" sc-fields="fields" ng-model="value"></isc-dynamic-form>
-        <isc-rich-text-editor sc-width="'100%'" sc-height="'10%'" ng-model="out"></isc-rich-text-editor>
-    </div>
+<!--root isomorphic directive must be defined as attribute in valid html tag, because ISC control get his dimensions-->
+<div class="full" isc-v-layout sc-width="'100%'" sc-height="'100%'">
+    <isc-list-grid sc-width="'100%'" sc-height="'30%'" sc-fields="fields" sc-data="data" ng-model="value"
+                   sc-show-resize-bar="true" sc-on-row-double-click="onDoubleClick"></isc-list-grid>
+    <isc-dynamic-form sc-width="'100%'" sc-height="'*'" sc-fields="fields" ng-model="value"
+                      sc-show-resize-bar="true"></isc-dynamic-form>
+    <isc-rich-text-editor sc-width="'100%'" sc-height="'10%'" ng-model="out"></isc-rich-text-editor>
 
-    <script type="text/javascript">
-        angular.module('sampleApp', ['ng-isc']).controller('SampleCtrl', ['$scope', function ($scope) {
-            $scope.fields = [
-                {name: 'name'},
-                {name: 'value'}
-            ];
-            $scope.data = [
-                {name: 'one', value: 1},
-                {name: 'two', value: 2},
-                {name: 'three', value: 3}
-            ];
-            $scope.out = '';
-            $scope.onDoubleClick = function (record, recordNum, fieldNum) {
-                $scope.out += 'Record ' + recordNum + ' double clicked<br>';
-            };
-        }]);
-    </script>
+    <isc-section-stack sc-width="'100%'" sc-height="'20%'">
+        <isc-section-stack-section sc-title="'Section title 1'" sc-expanded="true"
+                                   sc-can-collapse="false">
+            <isc-tab-set sc-width="'100%'" sc-height="'100%'">
+                <isc-tab sc-title="'Tab title 1'">
+                    <isc-h-layout>
+                        <isc-rich-text-editor sc-width="'30%'" sc-height="'100%'" ng-model="out"
+                                              sc-show-resize-bar="true"></isc-rich-text-editor>
+                        <isc-rich-text-editor sc-width="'70%'" sc-height="'100%'" ng-model="out"></isc-rich-text-editor>
+                    </isc-h-layout>
+                </isc-tab>
+                <isc-tab sc-title="'Tab title 2'">
+                    <isc-h-layout>
+                        <isc-slider ng-model="btn"></isc-slider>
+                        <isc-progressbar ng-model="btn"></isc-progressbar>
+                    </isc-h-layout>
+                </isc-tab>
+            </isc-tab-set>
+        </isc-section-stack-section>
+        <isc-section-stack-section sc-title="'Section title 2'" sc-expanded="false"
+                                   sc-can-collapse="true">
+        </isc-section-stack-section>
+    </isc-section-stack>
+</div>
+
+<script type="text/javascript">
+    angular.module('sampleApp', ['ng-isc']).controller('SampleCtrl', ['$scope', function ($scope) {
+        $scope.fields = [
+            {name: 'name'},
+            {name: 'value'}
+        ];
+        $scope.data = [
+            {name: 'one', value: 1},
+            {name: 'two', value: 2},
+            {name: 'three', value: 3}
+        ];
+        $scope.out = '';
+        $scope.onDoubleClick = function (record, recordNum, fieldNum) {
+            $scope.out += 'Record ' + recordNum + ' double clicked<br>';
+        };
+    }]);
+</script>
 </body>
 </html>
