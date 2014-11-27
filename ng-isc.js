@@ -89,11 +89,11 @@
  *
  * @module ng-isc
  *
- * @license ng-isc v0.1.0
+ * @license ng-isc v0.1.1
  * (c) 2014 Praxigento
  * License: LGPL
  *
- * @author alex-smirnov <0lex0.smirnov@gmail.com>
+ * @author alex-smirnov <smirnov-fl@yandex.ru>
  */
 /*global define, angular, window, document */
 (function (factory) {
@@ -138,409 +138,657 @@
          * iscLayout directive
          * @class iscLayout
          */
-        'Layout',
+        {
+            name: 'Layout',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscVLayout directive
          * @class iscVLayout
          */
-        'VLayout',
+        {
+            name: 'VLayout',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscHLayout directive
          * @class iscHLayout
          */
-        'HLayout',
+        {
+            name: 'HLayout',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscTreeGrid directive
          * @class iscTreeGrid
          */
-        'TreeGrid',
+        {
+            name: 'TreeGrid',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscListGrid directive
          * @class iscListGrid
          */
-        'ListGrid',
+        {
+            name: 'ListGrid',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDynamicForm directive
          * @class iscDynamicForm
          */
-        'DynamicForm',
+        {
+            name: 'DynamicForm',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscSlider directive
          * @class iscSlider
          */
-        'Slider',
+        {
+            name: 'Slider',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscRangeSlider directive
          * @class iscRangeSlider
          */
-        'RangeSlider',
+        {
+            name: 'RangeSlider',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscRichTextEditor directive
          * @class iscRichTextEditor
          */
-        'RichTextEditor',
+        {
+            name: 'RichTextEditor',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscImg directive
          * @class iscImg
          */
-        'Img',
+        {
+            name: 'Img',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscStretchImg directive
          * @class iscStretchImg
          */
-        'StretchImg',
+        {
+            name: 'StretchImg',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscLabel directive
          * @class iscLabel
          */
-        'Label',
+        {
+            name: 'Label',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscHTMLFlow directive
          * @class iscHTMLFlow
          */
-        'HTMLFlow',
+        {
+            name: 'HTMLFlow',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscHTMLPane directive
          * @class iscHTMLPane
          */
-        'HTMLPane',
+        {
+            name: 'HTMLPane',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDialog directive
          * @class iscDialog
          */
-        'Dialog',
+        {
+            name: 'Dialog',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscMenu directive
          * @class iscMenu
          */
-        'Menu',
+        {
+            name: 'Menu',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscMenuButton directive
          * @class iscMenuButton
          */
-        'MenuButton',
+        {
+            name: 'MenuButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscIMenuButton directive
          * @class iscIMenuButton
          */
-        'IMenuButton',
+        {
+            name: 'IMenuButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscMenuBar directive
          * @class iscMenuBar
          */
-        'MenuBar',
+        {
+            name: 'MenuBar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscButton directive
          * @class iscButton
          */
-        'Button',
+        {
+            name: 'Button',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscIButton directive
          * @class iscIButton
          */
-        'IButton',
+        {
+            name: 'IButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscAutoFitButton directive
          * @class iscAutoFitButton
          */
-        'AutoFitButton',
+        {
+            name: 'AutoFitButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscProgressbar directive
          * @class iscProgressbar
          */
-        'Progressbar',
+        {
+            name: 'Progressbar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscImgButton directive
          * @class iscImgButton
          */
-        'ImgButton',
+        {
+            name: 'ImgButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscStretchImgButton directive
          * @class iscStretchImgButton
          */
-        'StretchImgButton',
+        {
+            name: 'StretchImgButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscTabSet directive
          * @class iscTabSet
          */
-        'TabSet',
+        {
+            name: 'TabSet',
+            addChildName: 'addTab'
+        },
+
+        /**
+         * iscTab directive
+         * @class iscTab
+         */
+        {
+            name: 'Tab',
+            create: function (ctrl, parentCtrl, props) {
+                // add as member if parent is ISC control
+                if (parentCtrl) {
+                    props.pane = ctrl.members[0];
+                    parentCtrl.addChild(props);
+                }
+            },
+            addChild: function (child) {
+                if (this.control) {
+                    this.control.setTabPane(child, this.props);
+                } else {
+                    this.members.push(child);
+                }
+            }
+        },
 
         /**
          * iscWindow directive
          * @class iscWindow
          */
-        'Window',
+        {
+            name: 'Window',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscPortalLayout directive
          * @class iscPortalLayout
          */
-        'PortalLayout',
+        {
+            name: 'PortalLayout',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscPortlet directive
          * @class iscPortlet
          */
-        'Portlet',
+        {
+            name: 'Portlet',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscToolStrip directive
          * @class iscToolStrip
          */
-        'ToolStrip',
+        {
+            name: 'ToolStrip',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscHStack directive
          * @class iscHStack
          */
-        'HStack',
+        {
+            name: 'HStack',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscVStack directive
          * @class iscVStack
          */
-        'VStack',
+        {
+            name: 'VStack',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscLayoutSpacer directive
          * @class iscLayoutSpacer
          */
-        'LayoutSpacer',
+        {
+            name: 'LayoutSpacer',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscToolbar directive
          * @class iscToolbar
          */
-        'Toolbar',
+        {
+            name: 'Toolbar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscToolStripGroup directive
          * @class iscToolStripGroup
          */
-        'ToolStripGroup',
+        {
+            name: 'ToolStripGroup',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscIconButton directive
          * @class iscIconButton
          */
-        'IconButton',
+        {
+            name: 'IconButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscIconMenuButton directive
          * @class iscIconMenuButton
          */
-        'IconMenuButton',
+        {
+            name: 'IconMenuButton',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscRibbonBar directive
          * @class iscRibbonBar
          */
-        'RibbonBar',
+        {
+            name: 'RibbonBar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscSectionStack directive
          * @class iscSectionStack
          */
-        'SectionStack',
+        {
+            name: 'SectionStack',
+            addChildName: 'addSection'
+        },
+
+        /**
+         * iscSectionStackSection directive
+         * @class iscSectionStackSection
+         */
+        {
+            name: 'SectionStackSection',
+            create: function (ctrl, parentCtrl, props) {
+                // add as member if parent is ISC control
+                if (parentCtrl) {
+                    props.items = ctrl.members;
+                    parentCtrl.addChild(props);
+                }
+            },
+            addChild: function (child) {
+                if (this.control) {
+                    this.control.addItem(child, this.sectionId);
+                } else {
+                    this.members.push(child);
+                }
+            }
+        },
 
         /**
          * iscSplitbar directive
          * @class iscSplitbar
          */
-        'Splitbar',
+        {
+            name: 'Splitbar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscImgSplitbar directive
          * @class iscImgSplitbar
          */
-        'ImgSplitbar',
+        {
+            name: 'ImgSplitbar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscSnapbar directive
          * @class iscSnapbar
          */
-        'Snapbar',
+        {
+            name: 'Snapbar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscNavigationBar directive
          * @class iscNavigationBar
          */
-        'NavigationBar',
+        {
+            name: 'NavigationBar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscSplitPane directive
          * @class iscSplitPane
          */
-        'SplitPane',
+        {
+            name: 'SplitPane',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDetailViewer directive
          * @class iscDetailViewer
          */
-        'DetailViewer',
+        {
+            name: 'DetailViewer',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscTileLayout directive
          * @class iscTileLayout
          */
-        'TileLayout',
+        {
+            name: 'TileLayout',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscFlowLayout directive
          * @class iscFlowLayout
          */
-        'FlowLayout',
+        {
+            name: 'FlowLayout',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscTileGrid directive
          * @class iscTileGrid
          */
-        'TileGrid',
+        {
+            name: 'TileGrid',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscColumnTree directive
          * @class iscColumnTree
          */
-        'ColumnTree',
+        {
+            name: 'ColumnTree',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscTableView directive
          * @class iscTableView
          */
-        'TableView',
+        {
+            name: 'TableView',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDOMGrid directive
          * @class iscDOMGrid
          */
-        'DOMGrid',
+        {
+            name: 'DOMGrid',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDateGrid directive
          * @class iscDateGrid
          */
-        'DateGrid',
+        {
+            name: 'DateGrid',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDateChooser directive
          * @class iscDateChooser
          */
-        'DateChooser',
+        {
+            name: 'DateChooser',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscSearchForm directive
          * @class iscSearchForm
          */
-        'SearchForm',
+        {
+            name: 'SearchForm',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscColorPicker directive
          * @class iscColorPicker
          */
-        'ColorPicker',
+        {
+            name: 'ColorPicker',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDateRangeDialog directive
          * @class iscDateRangeDialog
          */
-        'DateRangeDialog',
+        {
+            name: 'DateRangeDialog',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscPropertySheet directive
          * @class iscPropertySheet
          */
-        'PropertySheet',
+        {
+            name: 'PropertySheet',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscFilterClause directive
          * @class iscFilterClause
          */
-        'FilterClause',
+        {
+            name: 'FilterClause',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscFilterBuilder directive
          * @class iscFilterBuilder
          */
-        'FilterBuilder',
+        {
+            name: 'FilterBuilder',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscCalendar directive
          * @class iscCalendar
          */
-        'Calendar',
+        {
+            name: 'Calendar',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscTimeline directive
          * @class iscTimeline
          */
-        'Timeline',
+        {
+            name: 'Timeline',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscDrawPane directive
          * @class iscDrawPane
          */
-        'DrawPane',
+        {
+            name: 'DrawPane',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscGauge directive
          * @class iscGauge
          */
-        'Gauge',
+        {
+            name: 'Gauge',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscBrowserPlugin directive
          * @class iscBrowserPlugin
          */
-        'BrowserPlugin',
+        {
+            name: 'BrowserPlugin',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscApplet directive
          * @class iscApplet
          */
-        'Applet',
+        {
+            name: 'Applet',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscFlashlet directive
          * @class iscFlashlet
          */
-        'Flashlet',
+        {
+            name: 'Flashlet',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscSVG directive
          * @class iscSVG
          */
-        'SVG',
+        {
+            name: 'SVG',
+            addChildName: 'addMember'
+        },
 
         /**
          * iscActiveXControl directive
          * @class iscActiveXControl
          */
-        'ActiveXControl'
+        {
+            name: 'ActiveXControl',
+            addChildName: 'addMember'
+        }
     ];
     // list of component types with data binding
     ngMod.DataBindedTypes = ['TreeGrid', 'ListGrid', 'DynamicForm'];
@@ -550,8 +798,9 @@
     var eventCounter = 0;
 
     angular.forEach(ngMod.Types, function (type) {
-        if (angular.isDefined(isc[type])) {
-            var dirName = prefix + type;
+        //if (angular.isDefined(isc[type.name])) {
+            var dirName = prefix + type.name;
+            console.log('Register ' + dirName + ' directive');
             ngMod.directive(dirName, ['$parse', '$q', function ($parse, $q) {
                 return {
                     restrict: 'EA',
@@ -562,7 +811,7 @@
                         ctrl.members = [];
 
                         // create ISC control of the given type
-                        ctrl.createControl = function (element, attrs) {
+                        ctrl.create = function (element, attrs) {
 
                             // search parent ng-isc library directive
 
@@ -578,7 +827,7 @@
                             };
                             var searchIscCtrl = function (el) {
                                 for (var i = 0; i < ngMod.Types.length; i++) {
-                                    var ctrlName = prefix + ngMod.Types[i];
+                                    var ctrlName = prefix + ngMod.Types[i].name;
                                     var ctrl = getCtrl(el, ctrlName);
                                     if (ctrl) {
                                         return ctrl;
@@ -654,70 +903,77 @@
                                 };
                                 props.htmlElement = element[0];
                             }
-                            // create ISC control
-                            ctrl.className = type;
-                            ctrl.control = isc[type].create(props);
-                            if (ctrl.members.length > 0) {
-                                ctrl.control.setMembers(ctrl.members);
-                            }
-                            // add as member if parent is ISC control
-                            if (parentCtrl) {
-                                parentCtrl.addMember(ctrl.control);
-                                //                            } else {
-                                //                                /* Set DOM element to the root of the current ISC-control. */
-                                //                                ctrl.control.setHtmlElement(element[0]);
-                            }
 
-                            // subscribe to control events
-                            angular.forEach(handlers, function (value, key) {
-                                // save default handler
-                                var defaultHandler = ctrl.control[key];
-                                ctrl.control[key] = function () {
-                                    var res = value.apply(this, arguments);
-                                    if (res !== false && angular.isFunction(defaultHandler)) {
-                                        // exec default handler
-                                        defaultHandler.apply(this, arguments);
-                                    }
-                                    return res;
-                                };
-                            });
-
-                            // subscribe to the all attributes values
-                            angular.forEach(attrs.$attr, function (value, key) {
-                                var match = key.match(/^sc(On)?([A-Z].*)/);
-                                if (match && !match[1]) {
-                                    var setName = 'set' + match[2];
-                                    var getName = 'get' + match[2];
-                                    attrs.$observe(key, function (newValue) {
-                                        if (angular.isFunction(ctrl.control[setName])) {
-                                            var value = $scope.$eval(newValue);
-                                            var oldValue = ctrl.control[getName] && ctrl.control[getName]();
-                                            if (oldValue !== value) {
-                                                console.log('call ' + ctrl.control.ID + '.' + setName + '(' + angular.toJson(value) + ')');
-                                                ctrl.control[setName](value);
-                                            }
-                                        }
+                            ctrl.className = type.name;
+                            if(type.create) {
+                                ctrl.control = type.create(ctrl, parentCtrl, props);
+                            } else {
+                                // create ISC control
+                                ctrl.control = isc[type.name].create(props);
+                                if (ctrl.members.length > 0) {
+                                    angular.forEach(ctrl.members, function (value) {
+                                        ctrl.addChild(value);
                                     });
                                 }
-                            });
+                                // add as member if parent is ISC control
+                                if (parentCtrl) {
+                                    parentCtrl.addChild(ctrl.control);
+                                    //                            } else {
+                                    //                                /* Set DOM element to the root of the current ISC-control. */
+                                    //                                ctrl.control.setHtmlElement(element[0]);
+                                }
 
-                            // export direct object reference
-                            if (attrs[dirName]) {
-                                var set = $parse(attrs[dirName]).assign;
-                                if (set) {
-                                    set($scope, ctrl.control);
-                                } else {
-                                    throw new Error('Can\'t assign to: ' + attrs[dirName]);
+                                // subscribe to control events
+                                angular.forEach(handlers, function (value, key) {
+                                    // save default handler
+                                    var defaultHandler = ctrl.control[key];
+                                    ctrl.control[key] = function () {
+                                        var res = value.apply(this, arguments);
+                                        if (res !== false && angular.isFunction(defaultHandler)) {
+                                            // exec default handler
+                                            defaultHandler.apply(this, arguments);
+                                        }
+                                        return res;
+                                    };
+                                });
+
+                                // subscribe to the all attributes values
+                                angular.forEach(attrs.$attr, function (value, key) {
+                                    var match = key.match(/^sc(On)?([A-Z].*)/);
+                                    if (match && !match[1]) {
+                                        var setName = 'set' + match[2];
+                                        var getName = 'get' + match[2];
+                                        attrs.$observe(key, function (newValue) {
+                                            if (angular.isFunction(ctrl.control[setName])) {
+                                                var value = $scope.$eval(newValue);
+                                                var oldValue = ctrl.control[getName] && ctrl.control[getName]();
+                                                if (oldValue !== value) {
+                                                    console.log('call ' + ctrl.control.ID + '.' + setName + '(' + angular.toJson(value) + ')');
+                                                    ctrl.control[setName](value);
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+
+                                // export direct object reference
+                                if (attrs[dirName]) {
+                                    var set = $parse(attrs[dirName]).assign;
+                                    if (set) {
+                                        set($scope, ctrl.control);
+                                    } else {
+                                        throw new Error('Can\'t assign to: ' + attrs[dirName]);
+                                    }
                                 }
                             }
                         };
 
                         // add member to ISC control
-                        ctrl.addMember = function (member) {
+                        ctrl.addChild = type.addChild  ||  function (child) {
                             if (ctrl.control) {
-                                ctrl.control.addMember(member);
+                                ctrl.control[type.addChildName](child);
                             } else {
-                                ctrl.members.push(member);
+                                ctrl.members.push(child);
                             }
                         };
                     },
@@ -725,7 +981,7 @@
                         var ctrl = ctrls[0];
                         var ngModel = ctrls[1];
                         // create control
-                        ctrl.createControl(element, attrs);
+                        ctrl.create(element, attrs);
                         // init data binding
                         if (ngMod.DataBindedTypes.indexOf(ctrl.className) !== -1 && !attrs.scDataSource) {
                             ctrl.dataFetch = (attrs.scDataFetch && scope.$eval(attrs.scDataFetch)) || ctrl.control.dataFetch;
@@ -808,7 +1064,7 @@
                     }
                 };
             }]);
-        }
+        //}
     });
 
     return ngMod;
